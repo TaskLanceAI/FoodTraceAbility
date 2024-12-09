@@ -1,38 +1,32 @@
 Below are the Cypher queries to insert data into Neo4j for the structure described in your query. This will create nodes and relationships step-by-step to match your desired graph structure.
 
 1. Insert SOURCE and SOURCE_TO_PROCESS nodes and relationship
-cypher
-Copy code
+cypher code
 CREATE (source:Node {name: "Source1"})
 CREATE (sourceToProcess:Node {name: "SourceToProcess1"})
 CREATE (source)-[:SOURCE_TO_PROCESS]->(sourceToProcess);
 2. Insert SOURCE_TO_PROCESS and PROCESS_TO_MANUFACTURE nodes and relationship
-cypher
-Copy code
+cypher code
 CREATE (processToManufacture:Node {name: "ProcessToManufacture1"})
 CREATE (sourceToProcess)-[:PROCESS_TO_MANUFACTURE]->(processToManufacture);
 3. Insert PROCESS_TO_MANUFACTURE and MANUFACTURE_TO_LOGISTICS nodes and relationship
-cypher
-Copy code
+cypher code
 CREATE (manufactureToLogistics:Node {name: "ManufactureToLogistics1"})
 CREATE (processToManufacture)-[:MANUFACTURE_TO_LOGISTICS]->(manufactureToLogistics);
 4. Insert MANUFACTURE_TO_LOGISTICS and Logistics_TO_RETAIL nodes and relationship
-cypher
-Copy code
+cypher code
 CREATE (logisticsToRetail:Node {name: "LogisticsToRetail1"})
 CREATE (manufactureToLogistics)-[:Logistics_TO_RETAIL]->(logisticsToRetail);
 5. Verify the Inserted Data
 Run the following query to verify that the data was inserted correctly:
 
-cypher
-Copy code
+cypher code
 MATCH (n)-[r]->(m)
 RETURN n, r, m;
 6. Optional: Modify for Multiple Entries
 If you need multiple instances of the graph structure, use the following approach:
 
-cypher
-Copy code
+cypher code
 UNWIND [
     {source: "Source1", sourceToProcess: "SourceToProcess1", processToManufacture: "ProcessToManufacture1", manufactureToLogistics: "ManufactureToLogistics1", logisticsToRetail: "LogisticsToRetail1"},
     {source: "Source2", sourceToProcess: "SourceToProcess2", processToManufacture: "ProcessToManufacture2", manufactureToLogistics: "ManufactureToLogistics2", logisticsToRetail: "LogisticsToRetail2"}
