@@ -1,4 +1,4 @@
-Below are the Cypher queries to insert data into Neo4j for the structure described in your query. This will create nodes and relationships step-by-step to match your desired graph structure.
+Below are the Cypher queries to insert data into Neo4j . This will create nodes and relationships step-by-step to enable Traceability.
 
 1. Insert SOURCE and SOURCE_TO_PROCESS nodes and relationship
 cypher code
